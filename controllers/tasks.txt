@@ -1,0 +1,5 @@
+1. handle this no https case
+
+2. create analytics api
+
+3. handle visit history thing
