@@ -1,0 +1,2 @@
+1. data is not getting refreshed - we need to fix this
+2. try to merge shortened.ejs and home.ejs
