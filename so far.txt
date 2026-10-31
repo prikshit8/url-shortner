@@ -1,3 +1,15 @@
 User model
 
 User controller
+
+User auth middleware
+
+handle homepage ("/") with middleware
+
+
+
+
+what is left?
+
+make sign in page
+make sign up page.
