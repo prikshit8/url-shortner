@@ -13,17 +13,22 @@ async function handleGenerateNewShortURL(req, res) {
     redirectURL,
     visitHistory: [],
   });
-  return res.render("shortened", { shortenedURL, redirectURL });
-  return res.status(201).json({ id: shortenedURL });
-}
 
-// bit.ly/url/Nptc6xb4R
+  const allURLs = await UrlModel.find({});
+  return res.render("home", {
+    shortenedURL,
+    urls: allURLs,
+  });
+}
 
 async function handleRedirect(req, res) {
   const shortId = req.params.shortId;
   const entry = await UrlModel.findOne({
     shortId,
   });
+  if(!entry){
+    return res.status(404).send("short URL not found");
+  }
   res.redirect(entry.redirectURL);
 }
 

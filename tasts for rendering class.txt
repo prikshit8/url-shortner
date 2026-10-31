@@ -1,2 +1,5 @@
-1. data is not getting refreshed - we need to fix this
-2. try to merge shortened.ejs and home.ejs
+1. try to merge shortened.ejs and home.ejs
+2. data is not getting refreshed - we need to fix this
+
+UI is getting refreshed because of form submission -
+ see if you can stop that.

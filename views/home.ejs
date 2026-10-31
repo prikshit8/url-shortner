@@ -9,6 +9,14 @@
 
 <body>
     <h1>URL shortner</h1>
+    <% if (locals.shortenedURL) { %>
+        <p>
+            Short URL generated:
+            <a href="/url/<%= shortenedURL %>">
+                https://localhost:3000/url/<%= shortenedURL %>
+            </a>
+        </p>
+    <% } %>
     <div>
         <form method="POST" action="/url">
             <label>Enter your URL</label>
@@ -22,4 +30,5 @@
         </li>
         <%})%>
 </body>
+
 </html>
