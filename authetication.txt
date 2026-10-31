@@ -1,0 +1,21 @@
+sign up
+email id, phone number, first name, last name, password
+
+this hash ID is generated, stored and sent to browser browser.
+
+on every request server will verify your hash id.
+
+server will get hash id via headers, cookies
+
+sign in
+email id / phone number
+password
+
+
+if someone is trying to access shortened URLs
+
+can we first check if they are authenticated or not?
+
+what our middleware will do is just check if user is logged in or not.
+
+how ? -> reading cookie

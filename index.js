@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const urlRoute = require("./routes/url");
 const { connectToMongoDB } = require("./connect");
@@ -14,8 +15,10 @@ connectToMongoDB("mongodb://127.0.0.1:27017/short-urls")
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 app.get("/", async (req, res) => {
   const allUrls = await UrlModel.find({});
