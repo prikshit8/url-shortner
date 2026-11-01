@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+</head>
+
+<body>
+    <h1>Create an account</h1>
+    <% if(locals.errors) { %>
+        <p>
+            <%= error %>
+        </p>
+        <%}%>
+
+            <form method="POST" action="/user">
+                <div>
+                    <label for="name">Name</label>
+                    <input id="name" type="text" name="name" required />
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" required />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" name="password" required />
+                </div>
+                <button type="submit">Sign up</button>
+            </form>
+
+            <p>Already have an account? <a href="/login">Log in</a> </p>
+</body>
+
+</html>
