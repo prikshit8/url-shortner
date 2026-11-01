@@ -4,8 +4,9 @@ const cookieParser = require("cookie-parser");
 
 const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticRouter");
+const userRoute = require("./routes/user");
+
 const { connectToMongoDB } = require("./connect");
-const { restrictToLoggedInUserOnly } = require("./middlewares/auth");
 
 const app = express();
 const PORT = 3000;
@@ -21,26 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-// app.get("/", async (req, res) => {
-//   const allUrls = await UrlModel.find({});
-//   res.render("home", { urls: allUrls });
-// });
+app.use("/user",userRoute);
 
-app.use("/", restrictToLoggedInUserOnly, staticRoute);
-
-// app.get("/html", async (req, res) => {
-//   const allUrls = await UrlModel.find({});
-//   return res.end(`
-//     <html>
-//     <head>URL shortner</head>
-//     <body>
-//     <ol>
-//     ${allUrls.map((url) => `<li>${url.shortId} - ${url.redirectURL}</li>`)}
-//     </ol>
-//     </body>
-//     </html>
-//     `);
-// });
+app.use("/", staticRoute);
 
 app.use("/url", urlRoute);
 

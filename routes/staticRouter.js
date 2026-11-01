@@ -17,7 +17,7 @@ router.get("/login", (req, res) => {
 router.get("/", restrictToLoggedInUserOnly, async (req, res) => {
   const allUrls = await UrlModel.find({});
   return res.render("home", {
-    url: allUrls,
+    urls: allUrls,
     user: req.user,
   });
 });

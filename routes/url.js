@@ -1,8 +1,13 @@
 const express = require("express");
+
 const {
   handleGenerateNewShortURL,
   handleRedirect,
 } = require("../controllers/url");
+
+const {
+  restrictToLoggedInUserOnly,
+} = require("../middlewares/auth");
 
 const router = express.Router();
 
@@ -12,11 +17,8 @@ const router = express.Router();
 
 // GET /url/anaylytics/:shortid -> numbers of clicks for shortened URL
 
-router.post("/", handleGenerateNewShortURL);
+router.post("/", restrictToLoggedInUserOnly, handleGenerateNewShortURL);
 
-// Nptc6xb4R
 router.get("/:shortId", handleRedirect);
-
-// router.get('/anaylytics/:shortid',);
 
 module.exports = router;
