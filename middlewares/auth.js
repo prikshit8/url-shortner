@@ -1,11 +1,11 @@
-const { getUserBySessionId } = require("../service/auth");
+const { getUser } = require("../service/auth");
 
 function restrictToLoggedInUserOnly(req, res, next) {
-  const userUid = req.cookies?.uid;
-  if (!userUid) {
+  const token = req.cookies?.uid;
+  if (!token) {
     return res.redirect("/login");
   }
-  const user = getUserBySessionId(userUid);
+  const user = getUser(token);
   if (!user) {
     return res.redirect("/login");
   }

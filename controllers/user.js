@@ -1,8 +1,7 @@
-const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
 
 const User = require("../models/user");
-const { setUserId,removeUserId } = require("../service/auth");
+const { setUser } = require("../service/auth");
 
 async function handleUserSignUp(req, res) {
   const { name, email, password } = req.body;
@@ -42,17 +41,17 @@ async function handleUserLogin(req, res) {
       error: "Invalid email or password",
     });
   }
-  const sessionId = crypto.randomUUID();
-  setUserId(sessionId, user);
-  res.cookie("uid", sessionId);
+  // const sessionId = crypto.randomUUID();
+  const token = setUser(user); /// we are getting signed token
+  res.cookie("uid", token);
   return res.redirect("/");
 }
 
 function handleUserLogout(req,res){
-  const sessionId = req.cookies?.uid;
-  if(sessionId){
-    removeUserId(sessionId);
-  }
+  // const sessionId = req.cookies?.uid;
+  // if(sessionId){
+  //   removeUserId(sessionId);
+  // }
   res.clearCookie("uid");
   return res.redirect("/login");
 }

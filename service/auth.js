@@ -1,19 +1,23 @@
-const sessioIdToUserMap = new Map();
+const jwt = require("jsonwebtoken");
+const secretKey = "bitcoin@satoshi!!!!";
+// const sessioIdToUserMap = new Map();
 
-function setUserId(id, user) {
-  sessioIdToUserMap.set(id, user);
+function setUser(user) {
+  // sessioIdToUserMap.set(id, user);
+  return jwt.sign({ _id: user.id, email: user.email }, secretKey);
 }
 
-function getUserBySessionId(id) {
-  return sessioIdToUserMap.get(id);
-}
-
-function removeUserId(id) {
-  sessioIdToUserMap.delete(id);
+function getUser(token) {
+  if(!token) return null;
+  try{
+    return jwt.verify(token,secretKey);
+  }
+  catch(err){
+    return null;
+  }
 }
 
 module.exports = {
-  setUserId,
-  getUserBySessionId,
-  removeUserId,
+  setUser,
+  getUser,
 };
